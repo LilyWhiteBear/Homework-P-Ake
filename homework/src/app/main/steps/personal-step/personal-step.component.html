@@ -1,0 +1,23 @@
+<form [formGroup]="formValueService.validateForm">
+    <div class="line-container">
+        <div class="input-warning-container">
+            <div class="input-container">
+                <label class="input-label">CID</label>
+            </div>
+            <input class="input-fill" cidInput formControlName="cid" [value]="formValueService.cidValue" pInputText
+                [ngClass]="formValueService.patternCidError ? 'invalid' : 'valid'" />
+            <div *ngIf="formValueService.patternCidError" class="warning-grid-item">Please fill 13 digits CID.</div>
+        </div>
+        <div class="input-warning-container">
+            <div class="input-container">
+                <label class="input-label">EMAIL</label>
+            </div>
+            <input class="input-fill" emailInput formControlName="email" [value]="formValueService.emailValue" pInputText
+                [ngClass]="formValueService.patternEmailError ? 'invalid' : 'valid'" />
+            <div *ngIf="formValueService.patternEmailError" class="warning-grid-item">Email pattern mismatch.</div>
+        </div>
+    </div>
+    <div class="line-container single-button-container">
+        <button pButton pRipple type="button" label="Next >" [disabled]="!formValueService.CanPersonalNext" (click)="Next()" class="p-button-raised"></button>
+    </div>
+</form>

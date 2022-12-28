@@ -1,0 +1,13 @@
+<div [className]="sidebarState ? 'sidebar sidebar-active' : 'sidebar'">
+    <p class="side-closer" (click)="SwitchSidebar()">x close</p>
+    <label class="side-label" (click)="RedirectToHome()">Home</label>
+</div> 
+<div class="header">
+    <label class="header-label" *ngIf="!sidebarState" (click)="SwitchSidebar()">☰</label>
+    <label class="header-label" *ngIf="sidebarState"></label>
+    <label class="sign-out-label" (click)="SignOut()">Sign out</label>
+</div>
+<div [className]="sidebarState ? 'content content-with-sidebar' : 'content'">
+    <router-outlet></router-outlet>
+</div>
+

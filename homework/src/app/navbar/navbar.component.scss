@@ -1,0 +1,112 @@
+.sidebar {
+    position: fixed;
+    transition: all 0.5s ease-in-out;
+    left: -100vw;
+    height: 100%;
+    width: 100vw;
+    overflow-x: hidden;
+    z-index: 98;
+    background-color: var(--secondary-bg-color);
+}
+
+.content {
+    transition: all 0.5s ease-in-out;
+    margin-left: 0vw;
+}
+
+@media screen and (min-width: 500px) {
+    .sidebar {
+        position: fixed;
+        transition: all 0.5s ease-in-out;
+        left: -25vw;
+        height: 100%;
+        width: 25vw;
+        overflow-x: hidden;
+        z-index: 98;
+        background-color: var(--secondary-bg-color);
+    }
+
+    .content-with-sidebar {
+        margin-left: 25vw;
+        overflow-x: hidden;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .sidebar {
+        position: fixed;
+        transition: all 0.5s ease-in-out;
+        left: -300px;
+        height: 100%;
+        width: 300px;
+        overflow-x: hidden;
+        z-index: 98;
+        background-color: var(--secondary-bg-color);
+    }
+
+    .content-with-sidebar {
+        margin-left: 300px;
+        overflow-x: hidden;
+    }
+}
+
+.sidebar-active {
+    left: 0vw;
+}
+
+.side-closer {
+    display: block;
+    text-align: right;
+    width: 100%;
+    padding: 1.5rem;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.side-closer:hover {
+    text-decoration: underline;
+}
+
+.side-label {
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 0.5rem 0rem;
+    color: white;
+    text-decoration: none;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.side-label:hover {
+    padding: 0.7rem 0.2rem;
+    background-color: white;
+    color: black;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: var(--primary-bg-color);
+}
+
+.header-label {
+    color: white;
+    font-size: xx-large;
+    user-select: none;
+    cursor: pointer;
+}
+
+.sign-out-label {
+    line-height: 3rem;
+    color: crimson;
+    text-decoration: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+.sign-out-label:hover {
+    text-decoration: underline;
+}

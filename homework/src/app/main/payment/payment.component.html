@@ -1,0 +1,23 @@
+<div class="page-container">
+    <div class="card-container">
+        <div class="line-container">
+            <label for="price">Price: </label>
+            <input type="text" name="price" [value]="price" (accountInput)="ChangePrice($event)">
+            <label>Baht</label>
+        </div>
+
+        <div class="line-container">
+            <form class="pay-form">
+                <button pButton pRipple type="button" label="Pay with Credit/Debit card" class="p-button-outlined p-button-secondary pay-button"
+                    (click)="OpenOmiseCardForm($event)" [disabled]="IsPriceValidate"></button>
+            </form>
+        </div>
+
+        <div class="line-container">
+            <form class="pay-form">
+                <button pButton pRipple type="button" label="Pay by Internet Banking" class="p-button-outlined p-button-secondary pay-button"
+                    (click)="OpenOmiseIBForm($event)" [disabled]="IsPriceValidate"></button>
+            </form>
+        </div>
+    </div>
+</div>

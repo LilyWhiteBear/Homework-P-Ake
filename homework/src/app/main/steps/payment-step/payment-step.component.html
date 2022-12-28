@@ -1,0 +1,21 @@
+<form [formGroup]="formValueService.validateForm">
+    <div class="line-container">
+        <div class="input-warning-container account-container">
+            <div class="input-container">
+                <label class="input-label">Salary</label>
+            </div>
+            <input class="input-fill align-end" (accountInput)="formValueService.changeAccount($event)"
+                formControlName="account" [value]="formValueService.accountValue" pInputText
+                [ngClass]="formValueService.patternAccountError ? 'invalid' : 'valid'" />
+            <div class="input-container">
+                <label class="input-label">Baht</label>
+            </div>
+            <div *ngIf="formValueService.patternAccountError" class="warning-grid-item">Invalid salary pattern.</div>
+        </div>
+    </div>
+    <div class="line-container button-container">
+        <button pButton pRipple type="button" label="< Prev" (click)="Prev()" class="p-button-raised"></button>
+        <button pButton pRipple type="button" label="Next >" [disabled]="!formValueService.CanPaymentNext"
+            (click)="Next()" class="p-button-raised"></button>
+    </div>
+</form>

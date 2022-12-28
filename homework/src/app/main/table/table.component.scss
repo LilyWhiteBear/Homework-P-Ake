@@ -1,0 +1,24 @@
+
+.page-container {
+    justify-content: start;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 1vh 0vw;
+}
+
+.table-container {
+    margin: 0.5rem 0rem;
+    width: 80%;
+}
+
+.submit-button {
+    background-color: white;
+}
+
+.submit-button:hover {
+    background-color: gray;
+}

@@ -1,0 +1,113 @@
+<form [formGroup]="loginForm" class="page-container">
+    <div class="form-container">
+        <div class="header-container">
+            <label class="header-label">Sign In by Paotang</label>
+        </div>
+        <div class="card-container">
+            <button type="button" pButton pRipple (appStreamingLogin)="$event" [disabled]="this.authService.isSigningIn"
+                [label]="''" class="p-button-raised p-button-text submit-button input-fill">
+                <p-progressSpinner *ngIf="this.authService.isSigningIn"
+                    [style]="{width: '30px', height: '30px', marginRight: '1rem'}" strokeWidth="5"></p-progressSpinner>
+                <label class="center-label">
+                    {{this.authService.isSigningIn ? this.processingText : 'LOGIN VIA STREAMING'}}
+                </label>
+            </button>
+        </div>
+        <div class="divider-container">
+            <p-divider align="center" [style]="{width: '100%'}"></p-divider>
+            <label class="divider-label">OR</label>
+            <p-divider align="center" [style]="{width: '100%'}"></p-divider>
+        </div>
+
+        <div class="header-container">
+            <label class="header-label">Sign In</label>
+        </div>
+        <div class="card-container">
+            <div>
+                <label class="input-label">Username</label>
+            </div>
+            <div class="input-container">
+                <input class="input-fill" formControlName="username" type="username" aria-describedby="username1-help"
+                    [placeholder]="'username'" (keypress)="onKeyPressInput($event)" pInputText />
+            </div>
+        </div>
+        <div class="card-container">
+            <div>
+                <label class="input-label">Password</label>
+            </div>
+            <div class="input-container">
+                <p-password formControlName="password" (keypress)="onKeyPressInput($event)" [toggleMask]="true"
+                    [feedback]="false" [placeholder]="'password'"
+                    styleClass="p-password p-component p-inputwrapper p-input-icon-right" [style]="{'width' : '100%'}"
+                    [inputStyle]="{'width' : '100%'}" class="input-fill">
+                    <!-- <ng-template pTemplate="header">
+                        <h6>Pick a password</h6>
+                    </ng-template>
+                    <ng-template pTemplate="footer">
+                        <p-divider></p-divider>
+                        <p class="mt-2">Suggestions</p>
+                        <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                            <li [ngClass]="patternLengthError ? 'invalid' : 'valid'">Minimum 8 characters</li>
+                            <li [ngClass]="patternLowerError ? 'invalid' : 'valid'">At least one lowercase</li>
+                            <li [ngClass]="patternUpperError ? 'invalid' : 'valid'">At least one uppercase</li>
+                            <li [ngClass]="patternNumericError ? 'invalid' : 'valid'">At least one numeric</li>
+                            <li [ngClass]="patternSpecialError ? 'invalid' : 'valid'">At least one special character</li>
+                        </ul>
+                    </ng-template> -->
+                </p-password>
+            </div>
+        </div>
+        <div *ngIf="this.authService.isFailedSignIn" class="card-container">
+            <label class="invalid">Invalid username or password</label>
+        </div>
+        <div class="login-button-container">
+            <button pButton pRipple type="submit" (click)="Login()"
+                [label]="this.authService.isSigningIn ? 'SIGNING IN...' : 'SIGN IN'"
+                [disabled]="this.authService.isSigningIn" class="p-button-raised p-button-text submit-button"></button>
+        </div>
+    </div>
+</form>
+
+<p-toast position="bottom-left" key="cookie" (onClose)="onCloseCookie()" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div class="flex flex-column" style="flex: 1">
+            <div class="text-center">
+                <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+                <h4>{{message.summary}}</h4>
+                <p>{{message.detail}}</p>
+            </div>
+            <div class="grid p-fluid cookie-button-container">
+                <div class="col-6">
+                    <button type="button" pButton (click)="onConfirmCookie()" label="Accept all"
+                        class="p-button-success"></button>
+                </div>
+                <div class="col-6">
+                    <button type="button" pButton (click)="onCustomizeCookie()" label="Customize"
+                        class="p-button-secondary"></button>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>
+
+<p-toast position="bottom-left" key="customizeCookie" (onClose)="onCloseCookie()" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div class="flex flex-column" style="flex: 1">
+            <div class="text-center">
+                <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+                <h4>{{message.summary}}</h4>
+                <p>{{message.detail}}</p>
+            </div>
+            <div class="grid p-fluid cookie-button-container">
+                <div class="col-6">
+                    <button type="button" pButton (click)="onCloseCookie()" label="Accept all"
+                        class="p-button-success"></button>
+                </div>
+                <div class="col-6">
+                    <button type="button" pButton (click)="onCloseCookie()" label="Accept all"
+                        class="p-button-secondary"></button>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>

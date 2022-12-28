@@ -1,0 +1,91 @@
+.form-container {
+    padding: 3rem;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    background-color: var(--primary-box-color); //for browsers which do not support gradient
+    background-image: linear-gradient(var(--primary-box-color), var(--secondary-box-color));
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 0vw;
+}
+
+.divider-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5rem 0vw;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5rem 0vw;
+}
+
+.login-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 1rem 0vw;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.header-label {
+    color: white;
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+.input-label {
+    color: white;
+}
+
+.center-label {
+    color: #3B82F6;
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.divider-label {
+    color: white;
+    text-align: center;
+    padding: 0rem 0.5rem;
+}
+
+.input-fill {
+    width: 100%;
+}
+
+.submit-button {
+    background-color: white;
+}
+
+.valid {
+    color: green;
+}
+
+.invalid {
+    color: crimson;
+}
+
+.cookie-button-container {
+    display: flex;
+    column-gap: 1%;
+}
+
+p-divider {
+    flex-grow: 1;
+}

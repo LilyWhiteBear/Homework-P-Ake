@@ -1,0 +1,10 @@
+<div class="line-container otp-container">
+    <div class="input-container">
+        <label class="input-label">OTP</label>
+    </div>
+    <div otpFiller [otpLong]="formValueService.otpLength"></div>
+</div>
+<div class="line-container button-container">
+    <button pButton pRipple type="button" label="< Prev" (click)="Prev()" class="p-button-raised"></button>
+    <button pButton pRipple type="button" label="Submit" [disabled]="!formValueService.CanSubmit" (click)="Submit()" class="p-button-raised"></button>
+</div>

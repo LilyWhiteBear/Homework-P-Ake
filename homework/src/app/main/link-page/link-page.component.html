@@ -1,0 +1,38 @@
+<div class="page-container">
+    <div class="content-container">
+        <div class="group-container" *ngIf="this.isLoading">
+            <p-progressSpinner strokeWidth="8" styleClass="custom-spinner"></p-progressSpinner>
+        </div>
+        <div class="group-container" *ngIf="!this.isLoading">
+            <div *ngFor="let depmt of department" id="{{depmt.name}}" (click)="RedirectTo(depmt.link)"
+                class="card-container">
+                <label class="depmt-label">{{depmt.name}}</label>
+            </div>
+        </div>
+    </div>
+    <div class="button-container">
+        <button type="button" pButton pRipple class="p-button-raised p-button-success"
+        (click)="CheckUUID()">Check UUID</button>
+    </div>
+    <div class="map-container">
+        <div *ngIf="currentLonLat.length == 2" class="lonlat-container">
+            <label>Lon & Lat : {{currentLonLat[0]}}, {{currentLonLat[1]}}</label>
+            <i class="pi pi-copy" (click)="CopyLonLatText()"></i>
+        </div>
+        <span class="p-input-icon-right">
+            <i class="pi pi-search" *ngIf="!isSearching" (click)="SearchLocation(location.value)"></i>
+            <i class="pi pi-spin pi-spinner" *ngIf="isSearching"></i>
+            <input type="text" pInputText placeholder="Search" #location [value]="historySearch" />
+        </span>
+        <div *ngIf="isShowingSearchResult" class="datalist">
+            <div *ngIf="searchResult.length === 0" class="datalist-option">
+                ไม่พบผลการค้นหา
+            </div>
+            <div *ngFor="let result of searchResult; let i = index" id="{{i}}" (click)="SelectLocation(i)" class="datalist-option">
+                <img src="{{result.icon}}" />
+                {{result.display_name}}
+            </div>
+        </div>
+        <div id="map" class="map"></div>
+    </div>
+</div>

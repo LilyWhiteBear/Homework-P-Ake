@@ -1,0 +1,147 @@
+@import "../../../../node_modules/ol/ol.css";
+
+.content-container {
+    margin: 5vh 15vw;
+}
+
+.group-container {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 1rem;
+    column-gap: 1rem;
+    padding: 3rem;
+    border: 1px solid black;
+    justify-content: space-evenly;
+}
+
+.card-container {
+    width: 14rem;
+    padding: 2rem;
+    background-color: cadetblue;
+    border-radius: 1rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15rem;
+    padding: 2rem;
+    border: 2px solid gold;
+}
+
+.depmt-label {
+    width: 10rem;
+    text-align: center;
+    user-select: none;
+    font-size: x-large;
+    font-weight: bolder;
+    overflow-wrap: break-word;
+    cursor: pointer;
+}
+
+:host ::ng-deep .custom-spinner .p-progress-spinner-circle {
+    animation: custom-progress-spinner-dash 1.5s ease-in-out infinite, custom-progress-spinner-color 6s ease-in-out infinite;
+}
+
+@keyframes custom-progress-spinner-color {
+    100%,
+    0% {
+        stroke: #ffffff;
+    }
+    25% {
+        stroke: #414141;
+    }
+    50% {
+        stroke: #000000;
+    }
+    75% {
+        stroke: #414141;
+    }
+}
+
+@keyframes custom-progress-spinner-dash {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35px;
+    }
+    100% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124px;
+    }
+}
+
+.map-container {
+    margin: 5vh 0;
+}
+
+.lonlat-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.p-input-icon-right, .p-input-icon-right > input {
+    width: 100%;
+}
+
+.pi {
+    cursor: pointer;
+}
+
+.datalist {
+    position: absolute;
+    background-color: white;
+    border: 1px solid black;
+    cursor: pointer;
+    z-index: 1;
+    overflow-y: scroll;
+}
+
+.datalist-option:hover {
+    background-color: rgba(65, 65, 65, 0.5);
+}
+
+@media only screen and (max-width: 600px){
+    .map-container {
+        max-width: 90vw;
+    }
+
+    .datalist {
+        width: 90vw;
+    }
+
+    .map {
+        width: 90vw;
+        height: 60vw;
+    }
+}
+
+@media only screen and (min-width: 600px){
+    .map-container {
+        max-width: 60vw;
+    }
+
+    .datalist {
+        width: 60vw;
+    }
+
+    .map {
+        width: 60vw;
+        height: 40vw;
+    }
+}
+
+.map {
+    margin-top: 0.5rem;
+}
