@@ -29,7 +29,7 @@ Code in folder
 ```
 homework/src/app/main/calendar/
 ```
-- All function in ts file (except SelectDate) will convert B.E. into A.D. by take innerHtml of relative class and add 543 to its text.
+- All function in ts file (except SelectDate) will convert B.E. into A.D. by take innerHtml of relative class and add 543 to its text.<br /><br />
 ฟังก์ชันในไฟล์ ts ทั้งหมดยกเว้น SelectDate() จะเปลี่ยนปี พศ เป็น คศ ด้วยการนำ innerHtml ของคลาสที่เกี่ยวข้องมาเพิ่ม 543 ปี<br /><br />
 - Change language of calendar setting in file<br /><br />
   ตั้งค่าการเปลี่ยนภาษาในไฟล์<br /><br />
