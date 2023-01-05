@@ -32,6 +32,7 @@ export const Routing = {
         Backend: {
             Host: 'http://localhost:9000',
             Sub: {
+                permission: '/get/permission',
                 credit: '/checkout/checkout-by-credit',
                 banking: '/checkout/checkout-by-internet-banking',
                 jwt: '/auth/generate-jwt'

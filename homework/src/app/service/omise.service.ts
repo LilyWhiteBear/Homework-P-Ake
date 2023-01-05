@@ -24,7 +24,7 @@ export class OmiseService {
         }).subscribe((res: any) => {
           sub.next(res);
         });
-      })
+      });
     });
   }
 
@@ -38,7 +38,7 @@ export class OmiseService {
         }).subscribe((res: any) => {
           sub.next(res);
         });
-      })
+      });
     });
   }
 }

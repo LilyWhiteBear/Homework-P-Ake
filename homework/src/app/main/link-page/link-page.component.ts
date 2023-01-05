@@ -23,6 +23,7 @@ import { Location } from 'src/app/utils/constant/location';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { MainRouteCode } from 'src/app/utils/constant/routing';
 import { SessionQuery } from 'src/app/utils/session/session.query';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-link-page',
@@ -62,39 +63,56 @@ export class LinkPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.permissionService.GetPermission().subscribe((numberOfDept: number) => {
-      this.permissionService.GetDepartment(numberOfDept).subscribe(
-        {
-          next: (res: Array<DepartmentAPI>) => {
-            res.forEach((ch: DepartmentAPI, index: number) => {
-              this.department.push({
-                name: ch.name,
-                // link: ch.url
-                link: `main/${MainRouteCode[index]}`
+    let unsubGetPermission = new Subject();
+    this.permissionService.GetPermission().pipe(takeUntil(unsubGetPermission)).subscribe({
+      next: (numberOfDept: number) => {
+        let unsubGetDepartment = new Subject();
+        this.permissionService.GetDepartment(numberOfDept).pipe(takeUntil(unsubGetDepartment)).subscribe(
+          {
+            next: (res: Array<DepartmentAPI>) => {
+              res.forEach((ch: DepartmentAPI, index: number) => {
+                this.department.push({
+                  name: ch.name,
+                  // link: ch.url
+                  link: `main/${MainRouteCode[index]}`
+                });
               });
-            });
-          },
-          error: (err: any) => {
-            this.isLoading = false;
-            console.log("error : ", err);
-          },
-          complete: () => {
-            this.isLoading = false;
-          }
-        });
+            },
+            error: (err: any) => {
+              this.isLoading = false;
+              console.log("error : ", err);
+            },
+            complete: () => {
+              this.isLoading = false;
+              unsubGetDepartment.next(0);
+              unsubGetDepartment.complete();
+            }
+          });
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+      complete: () => {
+        console.log("unsub");
+        unsubGetPermission.next(0);
+        unsubGetPermission.complete();
+      }
     })
     this.InitMap();
   }
 
   public CheckUUID(): void {
-    this.sessionQuery.getUserData().subscribe((res: any) => {
-      if(res.uuid) {
+    let userDataSubscription = this.sessionQuery.getUserData().subscribe((res: any) => {
+      if (res.uuid) {
         alert("Your UUID is : " + res.uuid);
       }
       else {
         alert("Failed to load UUID from Local Storage.");
       }
-    })
+    });
+    setTimeout(() => {
+      userDataSubscription.unsubscribe();
+    }, 1000);
   }
 
   //ol-map here
@@ -150,7 +168,7 @@ export class LinkPageComponent implements OnInit {
       map: this.map,
       source: this.source,
       style: new Style({
-        stroke: new Stroke ({
+        stroke: new Stroke({
           color: 'rgba(255, 0, 0, 0.5)',
           width: 20
         }),

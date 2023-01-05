@@ -16,6 +16,39 @@ var jwt = require('jsonwebtoken');
 
 const secretKey = 'test';
 
+const department = [
+  {
+    name: 'Calendar',
+    url: 'string'
+  },
+  {
+    name: 'Table',
+    url: 'string'
+  },
+  {
+    name: 'Validate form',
+    url: 'string'
+  },
+  {
+    name: 'Omise payment',
+    url: 'string'
+  },
+  {
+    name: 'Untitled',
+    url: 'string'
+  }
+]
+
+app.get('/get/permission/:number', async (req, res, next) => {
+  try {
+    res.send(department.slice(0, req.params.number));
+  }
+  catch {
+    console.log("error at send permission");
+  }
+  next();
+});
+
 app.post('/auth/generate-jwt', async (req, res, next) => {
   try {
     var token = jwt.sign(req.body, secretKey, { algorithm: 'HS256', expiresIn: '2d' });

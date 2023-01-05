@@ -120,9 +120,12 @@ export class PaymentComponent implements OnInit {
   }
 
   private GetUserData(): void {
-    this.sessionQuery.getUserData().subscribe((data) => {
+    let userDataSubscription = this.sessionQuery.getUserData().subscribe((data) => {
       this.userData = data;
     });
+    setTimeout(() => {
+      userDataSubscription.unsubscribe();
+    }, 1000);
   }
 
   private ClearAmount(): void {

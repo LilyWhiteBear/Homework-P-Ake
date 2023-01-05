@@ -24,6 +24,6 @@ export class AuthInterceptorService implements HttpInterceptor {
   }
 
   private canCache(request: HttpRequest<unknown>): boolean {
-    return request.urlWithParams.includes('iceandfire')
+    return request.urlWithParams.includes('permission');
   }
 }
