@@ -93,7 +93,6 @@ export class LinkPageComponent implements OnInit {
         console.log(err);
       },
       complete: () => {
-        console.log("unsub");
         unsubGetPermission.next(0);
         unsubGetPermission.complete();
       }
